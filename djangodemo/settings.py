@@ -55,7 +55,8 @@ ROOT_URLCONF = 'djangodemo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'),'./templates'],
+        # 'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ''],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +81,25 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
+# import pymysql         # 一定要添加这两行！
+# pymysql.install_as_MySQLdb()
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql', # 数据库引擎
+#         'NAME': 'mysite',  # 数据库名
+#         'USER': 'root',     # 用户名
+#         'PASSWORD': '****',  # 密码
+#         'HOST': '192.168.1.121',  # mysql服务所在的主机ip
+#         'PORT': '3306',         # mysql服务端口
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -120,9 +139,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_URL = '/static/' # 页面访问时会把这个作为前缀
-STATICFILES_DIRS = [os.path.join(BASE_DIR, '/static'),'./static']
-# STATIC_ROOT = './admin/'
+STATIC_URL = '/static/'  # 页面访问时会把这个作为前缀
+STATICFILES_DIRS = [  # Django 建议在每个app目录下都生成一个static 目录，STATICFILES_DIRS 指定项目通用static路径
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
+STATICFILES_FINDERS = ''
+STATIC_ROOT = ''
 
 if __name__ == '__main__':
     print(BASE_DIR)
