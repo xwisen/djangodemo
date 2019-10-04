@@ -1,0 +1,8 @@
+.idea*
+*.pyc
+*/*.pyc
+*/*/*.pyc
+*.tgz
+*.gz
+tmp
+*.sqlite3

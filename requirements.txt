@@ -1,0 +1,2 @@
+django==2.2.6
+django-admin==2.0.0
