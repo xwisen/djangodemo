@@ -16,8 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path,include
 
+from login.views import LoginViews
 urlpatterns = [
-    path(r"admin/", admin.site.urls),
-    path(r"ping/",include("ping.urls")),
-    path(r"login/",include("login.urls")),
+    path("",LoginViews.login),
 ]
