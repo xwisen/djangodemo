@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login',
+    'demoweb',
 ]
 
 MIDDLEWARE = [
@@ -142,10 +143,10 @@ USE_TZ = True
 STATIC_URL = '/static/'  # 页面访问时会把这个作为前缀
 STATICFILES_DIRS = [  # Django 建议在每个app目录下都生成一个static 目录，STATICFILES_DIRS 指定项目通用static路径
     os.path.join(BASE_DIR, "static"),
-    '/var/www/static/',
+    '/var/www/djangodemo/static/',
 ]
 STATICFILES_FINDERS = ''
-STATIC_ROOT = ''
+STATIC_ROOT = '/var/www/djangodemo/static/'  # 静态文件统一收集目录
 
 if __name__ == '__main__':
     print(BASE_DIR)
