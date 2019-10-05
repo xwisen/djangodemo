@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login',
+    'ping',
     'demoweb',
 ]
 
@@ -57,7 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), ''],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,12 +77,6 @@ WSGI_APPLICATION = 'djangodemo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -141,12 +136,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'  # 页面访问时会把这个作为前缀
+STATICFILES_FINDERS = (  # STATICFILES_FINDERS 标注先寻找app static 还是先寻找project static
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+)
 STATICFILES_DIRS = [  # Django 建议在每个app目录下都生成一个static 目录，STATICFILES_DIRS 指定项目通用static路径
     os.path.join(BASE_DIR, "static"),
-    '/var/www/djangodemo/static/',
 ]
-STATICFILES_FINDERS = ''
-STATIC_ROOT = '/var/www/djangodemo/static/'  # 静态文件统一收集目录
+
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")  # 静态文件统一收集目录
+STATIC_ROOT = '/var/www/static'
 
 if __name__ == '__main__':
     print(BASE_DIR)
