@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',  # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html#prerequisites
     'login',
     'ping',
     'demoweb',
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'djangodemo.urls'
@@ -146,6 +148,9 @@ STATICFILES_DIRS = [  # Django 建议在每个app目录下都生成一个static 
 
 # STATIC_ROOT = os.path.join(BASE_DIR, "static")  # 静态文件统一收集目录
 STATIC_ROOT = '/var/www/static'
+
+# django-debug-toolbar
+INTERNAL_IPS = ["127.0.0.1"]
 
 if __name__ == '__main__':
     print(BASE_DIR)
